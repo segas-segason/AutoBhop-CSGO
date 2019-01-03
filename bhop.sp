@@ -34,7 +34,7 @@ public void OnPluginStart()
 	abMeterLocation	=	CreateConVar("sm_absm_location", 	"1", "Where should speed meter be shown. 0 = CenterHUD, 1 = New CSGO HUD");
 	abXRound		=	CreateConVar("sm_ab_round", 		"0", "Toggle autobhop on every which round?");
 	
-	AutoExecConfig(true, "cruze_bhoptoggle");
+	AutoExecConfig(true, "bhop");
 	
 	HookEvent("round_start", OnBhop_RoundStart);
 	HookEvent("player_spawn", OnBhop_PlayerSpawn);
