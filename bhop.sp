@@ -31,8 +31,8 @@ public void OnPluginStart()
 	abVelocity		=	CreateConVar("sm_ab_velocity",		"1", "Whether to show velocity when bhop is enabled.");
 	abAdvert		=	CreateConVar("sm_ab_advert", 		"0", "Enable or Disable Advert.\nPlease don't disable this until it's too annoying.");
 	abAdvertMode	=	CreateConVar("sm_ab_advertmode", 	"1", "Advert Location 1 = Chat, 2 = HintText, 3 = Text");
-	abMeterLocation	=	CreateConVar("sm_absm_location", 	"1", "Where should speed meter be shown. 0 = CenterHUD, 1 = New CSGO HUD");
-	abXRound		=	CreateConVar("sm_ab_round", 		"0", "Toggle autobhop on every which round?");
+	abMeterLocation	=	CreateConVar("sm_absm_location", 	"0", "Where should speed meter be shown. 0 = CenterHUD, 1 = New CSGO HUD");
+	abXRound		=	CreateConVar("sm_ab_round", 		"1", "Toggle autobhop on every which round?");
 	
 	AutoExecConfig(true, "bhop");
 	
