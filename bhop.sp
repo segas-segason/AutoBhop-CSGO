@@ -5,7 +5,7 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#define SERVER_TAG "[{orange}AB{default}]"
+#define SERVER_TAG "{GREEN}[DEATHRUN]"
 
 int g_iround = 0, aa, ebh, st, ec;
 float sjc, slc;
@@ -29,10 +29,10 @@ public Plugin myinfo =
 public void OnPluginStart() 
 {
 	abVelocity		=	CreateConVar("sm_ab_velocity",		"1", "Whether to show velocity when bhop is enabled.");
-	abAdvert		=	CreateConVar("sm_ab_advert", 		"1", "Enable or Disable Advert.\nPlease don't disable this until it's too annoying.");
+	abAdvert		=	CreateConVar("sm_ab_advert", 		"0", "Enable or Disable Advert.\nPlease don't disable this until it's too annoying.");
 	abAdvertMode	=	CreateConVar("sm_ab_advertmode", 	"1", "Advert Location 1 = Chat, 2 = HintText, 3 = Text");
 	abMeterLocation	=	CreateConVar("sm_absm_location", 	"1", "Where should speed meter be shown. 0 = CenterHUD, 1 = New CSGO HUD");
-	abXRound		=	CreateConVar("sm_ab_round", 		"5", "Toggle autobhop on every which round?");
+	abXRound		=	CreateConVar("sm_ab_round", 		"0", "Toggle autobhop on every which round?");
 	
 	AutoExecConfig(true, "cruze_bhoptoggle");
 	
@@ -135,10 +135,10 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 		SetConVarFloat(FindConVar("sv_staminajumpcost"), 0.0, true);
 		SetConVarFloat(FindConVar("sv_staminalandcost"), 0.0, true);
 		SetConVarInt(FindConVar("mp_solid_teammates"), 0, true);
-		CPrintToChatAll("%s {lime}Auto-BHOP has been turned {green}ON{default}", SERVER_TAG);
+		CPrintToChatAll("%s Автораспрыжка {green}включена{default}", SERVER_TAG);
 		for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 		{
-			PrintHintText(i, "<font color='#90ee90'>AUTO-BHOP is turned</font><font color='#00FF00'> ON</font>");
+			PrintHintText(i, "Автораспрыжка включена");
 			SetEntProp(i, Prop_Send, "m_CollisionGroup", 2);
 		}
 	}
@@ -152,10 +152,10 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 			SetConVarFloat(FindConVar("sv_staminajumpcost"), sjc, true);
 			SetConVarFloat(FindConVar("sv_staminalandcost"), slc, true);
 			SetConVarInt(FindConVar("mp_solid_teammates"), st, true);
-			CPrintToChatAll("%s {lightred}Auto-BHOP has been turned {darkred}OFF", SERVER_TAG);
+			CPrintToChatAll("%s Автораспрыжка {darkred}отключена", SERVER_TAG);
 			for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 			{
-				PrintHintText(i, "<font color='#FF0000'>AUTO-BHOP is turned </font><font color='#8b0000'>OFF</font>");
+				PrintHintText(i, "Автораспрыжка отключена");
 				SetEntProp(i, Prop_Send, "m_CollisionGroup", ec);
 			}
 		}
@@ -178,11 +178,11 @@ public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float
 		{
 			if(GetConVarBool(abMeterLocation))
 			{
-				ShowHudText(client, 3, "Speed: %.2f u/s", fVelocity);
+				ShowHudText(client, 3, "Скорость: %.2f м/с", fVelocity);
 			}
 			else
 			{
-				PrintHintText(client, "<font color='#FF0000'> Speed</font>:<font color='#00ff00'> %.2f</font> <u/s", fVelocity);
+				PrintHintText(client, "Скорость: %.2f м/с", fVelocity);
 			}
 		}
 		if(IsClientObserver(client))
@@ -198,11 +198,11 @@ public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float
 			{
 				if(IsFakeClient(spectarget))
 				{
-					ShowHudText(client, 3, "BOT %s's Speed: %.2f u/s", ClientName, fVelocity);
+					ShowHudText(client, 3, "BOT %s Скорость: %.2f м/с", ClientName, fVelocity);
 				}
 				else
 				{
-					ShowHudText(client, 3, "%s's Speed: %.2f u/s", ClientName, fVelocity);
+					ShowHudText(client, 3, "%s Скорость: %.2f м/с", ClientName, fVelocity);
 				}
 			}
 			else
@@ -211,22 +211,22 @@ public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float
 				{
 					if (GetClientTeam(spectarget) == 2)
 					{
-						PrintHintText(client, "<font color='#ede749'>BOT %s</font>'s <font color='#FF0000'>Speed</font>: <font color='#00ff00'> %.2f</font> u/s", ClientName, fVelocity);
+						PrintHintText(client, "BOT %s Скорость: %.2f м/с", ClientName, fVelocity);
 					}
 					else
 					{
-						PrintHintText(client, "<font color='#3169c4'>BOT %s</font>'s <font color='#FF0000'>Speed</font>: <font color='#00ff00'> %.2f</font> u/s", ClientName, fVelocity);
+						PrintHintText(client, "BOT %s Скорость: %.2f м/с", ClientName, fVelocity);
 					}
 				}
 				else
 				{
 					if (GetClientTeam(spectarget) == 2)
 					{
-						PrintHintText(client, "<font color='#ede749'>%s</font>'s <font color='#FF0000'>Speed</font>: <font color='#00ff00'> %.2f</font> u/s", ClientName, fVelocity);
+						PrintHintText(client, "%s Скорость: %.2f м/с", ClientName, fVelocity);
 					}
 					else
 					{
-						PrintHintText(client, "<font color='#3169c4'>%s</font>'s <font color='#FF0000'>Speed</font>: <font color='#00ff00'> %.2f</font> u/s", ClientName, fVelocity);
+						PrintHintText(client, "%s Скорость: %.2f м/с", ClientName, fVelocity);
 					}
 				}
 			}
