@@ -20,9 +20,9 @@ bool MrBool;
 
 public Plugin myinfo =
 {
-	name = "Autobhop every x round.",
+	name = "bhop",
 	author = "Cruze",
-	description = "Turns on autobhop every Xth round.",
+	description = "Turns on autobhop every Xth round",
 	version = "1.1",
 	url = ""
 }
