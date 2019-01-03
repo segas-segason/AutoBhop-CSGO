@@ -135,7 +135,7 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 		SetConVarFloat(FindConVar("sv_staminajumpcost"), 0.0, true);
 		SetConVarFloat(FindConVar("sv_staminalandcost"), 0.0, true);
 		SetConVarInt(FindConVar("mp_solid_teammates"), 0, true);
-		CPrintToChatAll("%s Автораспрыжка {green}включена{default}", SERVER_TAG);
+		CPrintToChatAll("%s {default}Автораспрыжка включена.", SERVER_TAG);
 		for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 		{
 			PrintHintText(i, "Автораспрыжка включена");
@@ -152,7 +152,7 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 			SetConVarFloat(FindConVar("sv_staminajumpcost"), sjc, true);
 			SetConVarFloat(FindConVar("sv_staminalandcost"), slc, true);
 			SetConVarInt(FindConVar("mp_solid_teammates"), st, true);
-			CPrintToChatAll("%s Автораспрыжка {darkred}отключена", SERVER_TAG);
+			CPrintToChatAll("%s {default}Автораспрыжка отключена.", SERVER_TAG);
 			for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 			{
 				PrintHintText(i, "Автораспрыжка отключена");
