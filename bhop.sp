@@ -11,8 +11,6 @@ int g_iround = 0, aa, ebh, st, ec;
 float sjc, slc;
 
 Handle abVelocity;
-Handle abAdvert;
-Handle abAdvertMode;
 Handle abMeterLocation;
 Handle abXRound;
 
@@ -20,28 +18,24 @@ bool MrBool;
 
 public Plugin myinfo =
 {
-	name = "bhop",
+	name = "AutoBhop",
 	author = "Cruze",
-	description = "Turns on autobhop every Xth round",
-	version = "1.1",
-	url = ""
+	description = "Turns on autobhop",
+	version = "1.2",
+	url = "https://github.com/Cruze03/CSGO-Autobhop-every-x-round"
 }
 public void OnPluginStart() 
 {
 	abVelocity		=	CreateConVar("sm_ab_velocity",		"1", "Whether to show velocity when bhop is enabled.");
-	abAdvert		=	CreateConVar("sm_ab_advert", 		"0", "Enable or Disable Advert.\nPlease don't disable this until it's too annoying.");
-	abAdvertMode	=	CreateConVar("sm_ab_advertmode", 	"1", "Advert Location 1 = Chat, 2 = HintText, 3 = Text");
 	abMeterLocation	=	CreateConVar("sm_absm_location", 	"0", "Where should speed meter be shown. 0 = CenterHUD, 1 = New CSGO HUD");
 	abXRound		=	CreateConVar("sm_ab_round", 		"1", "Toggle autobhop on every which round?");
 	
-	AutoExecConfig(true, "bhop");
+	AutoExecConfig(true, "autobhop");
 	
 	HookEvent("round_start", OnBhop_RoundStart);
 	HookEvent("player_spawn", OnBhop_PlayerSpawn);
 	
 	HookUserMessage(GetUserMessageId("TextMsg"), TextMsgHook);
-	
-	CreateTimer(600.0, Adverts, _, TIMER_REPEAT|TIMER_FLAG_NO_MAPCHANGE);
 }
 
 public void OnMapStart() 
@@ -75,28 +69,6 @@ public Action Timer_GameRestarted(Handle hTimer)
 	g_iround = 1; //for some reason 1st round is not being counted after restartgame therefore "1"
 }
 
-public Action Adverts(Handle timer)
-{
-	if(GetConVarBool(abAdvert))
-	{
-		if(GetConVarInt(abAdvertMode) == 1)
-		{
-			CPrintToChatAll("%s This server is running {green}BHOP Toggle {default}plugin by {olive}♚Cr[U]zE♚. ({blue}github.com/cruze03{default})", SERVER_TAG);
-		}
-		if(GetConVarInt(abAdvertMode) == 2)
-		{
-			PrintHintTextToAll("<b>BHOP TOGGLE PLUGIN BY <font color='#00ff00'>♚Cr[U]zE♚</font></b>");
-		}
-		if(GetConVarInt(abAdvertMode) == 3)
-		{
-			SetHudTextParams(-1.0, 0.32, 2.0, 0, 255, 255, 255, 2, 0.3, 0.3, 0.3);
-			for(int i = 1; i <= MaxClients; ++i)
-				if(IsClientInGame(i) && !IsFakeClient(i))
-					ShowHudText(i, -1, "BHOP TOGGLE PLUGIN BY ♚Cr[U]zE♚");
-		}
-	}
-	return Plugin_Stop;
-}
 public void OnBhop_PlayerSpawn(Handle event, const char[] name, bool dontBroadcast)
 {
 	//Added for late join players.
@@ -163,10 +135,8 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 	
 }
 
-public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float vel[3], const float angles[3],
-								int weapon, int subtype, int cmdnum, int tickcount, int seed, const int mouse[2]) 
+public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float vel[3], const float angles[3], int weapon, int subtype, int cmdnum, int tickcount, int seed, const int mouse[2]) 
 {
-	// If AutoBhop is enabled, player velocity(speed) will be shown. Thanks SHUFEN.jp(https://forums.alliedmods.net/member.php?u=250145) for helping me out!! ^___^
 
 	if(GetConVarInt(FindConVar("sv_autobunnyhopping")) == 1  && IsValidClient(client) && GetConVarBool(abVelocity)) 
 	{	
