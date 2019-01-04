@@ -1,13 +1,9 @@
 # AutoBhop
 
-// На каком раунде активировать бхоп?
+Ссылка на оригинал - https://github.com/Cruze03/CSGO-Autobhop-every-x-round
 
-sm_ab_round "5"
-
-// Активировать показатель скорости?
-
-sm_ab_velocity "1"
-
-// Где вывести показатель скорости? 0 = CenterHUD, 1 = CSGO HUD
-
-sm_absm_location "1"
+<ul>
+<li>sm_ab_round "5" // На каком раунде активировать бхоп?</li>
+<li>sm_ab_velocity "1" // Активировать показатель скорости?</li>
+<li>sm_absm_location "1" // Где вывести показатель скорости? 0 = CenterHUD, 1 = CSGO HUD</li>
+</ul>
