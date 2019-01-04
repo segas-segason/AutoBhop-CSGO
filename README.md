@@ -2,7 +2,7 @@
 
 Ссылка на оригинал - https://github.com/Cruze03/CSGO-Autobhop-every-x-round
 
-Конфиг autobhop.cfg автоматически генерируется в папке <code>cfg/sourcemod<code>
+Конфиг autobhop.cfg автоматически генерируется в папке <code>cfg/sourcemod</code>
 <ul>
 <li>sm_ab_round "5" // На каком раунде активировать бхоп?</li>
 <li>sm_ab_velocity "1" // Активировать показатель скорости?</li>
