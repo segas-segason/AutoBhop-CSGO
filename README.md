@@ -1,4 +1,4 @@
-# autobhop_csgo_ru
+# autobhop_csgo_ru v 1.3
 
 Ссылка на оригинал - https://github.com/Cruze03/CSGO-Autobhop-every-x-round
 
