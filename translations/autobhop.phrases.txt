@@ -1,0 +1,18 @@
+"Phrases"
+{
+	"AutoBhop On"
+	{
+		"en"		"Autobhop enabled."
+		"ru"		"Автораспрыжка включена."
+	}
+	"AutoBhop Off"
+	{
+		"en"		"Autobhop disabled."
+		"ru"		"Автораспрыжка отключена."
+	}
+	"Speed"
+	{
+		"en"		"Speed:"
+		"ru"		"Скорость:"
+	}
+}
