@@ -21,7 +21,7 @@ public Plugin myinfo =
 	name = "AutoBhop",
 	author = "Cruze",
 	description = "Turns on autobhop",
-	version = "1.2",
+	version = "1.3",
 	url = "https://github.com/Cruze03/CSGO-Autobhop-every-x-round"
 }
 public void OnPluginStart() 
@@ -31,6 +31,8 @@ public void OnPluginStart()
 	abXRound		=	CreateConVar("sm_ab_round", 		"1", "Toggle autobhop on every which round?");
 	
 	AutoExecConfig(true, "autobhop");
+	
+	LoadTranslations("autobhop.phrases");
 	
 	HookEvent("round_start", OnBhop_RoundStart);
 	HookEvent("player_spawn", OnBhop_PlayerSpawn);
@@ -107,10 +109,10 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 		SetConVarFloat(FindConVar("sv_staminajumpcost"), 0.0, true);
 		SetConVarFloat(FindConVar("sv_staminalandcost"), 0.0, true);
 		SetConVarInt(FindConVar("mp_solid_teammates"), 0, true);
-		CPrintToChatAll("%s {default}Автораспрыжка включена.", SERVER_TAG);
+		CPrintToChatAll("%s {default}%t", SERVER_TAG,"AutoBhop On");
 		for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 		{
-			PrintHintText(i, "Автораспрыжка включена");
+			PrintHintText(i, "%t", "AutoBhop On");
 			SetEntProp(i, Prop_Send, "m_CollisionGroup", 2);
 		}
 	}
@@ -124,10 +126,10 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 			SetConVarFloat(FindConVar("sv_staminajumpcost"), sjc, true);
 			SetConVarFloat(FindConVar("sv_staminalandcost"), slc, true);
 			SetConVarInt(FindConVar("mp_solid_teammates"), st, true);
-			CPrintToChatAll("%s {default}Автораспрыжка отключена.", SERVER_TAG);
+			CPrintToChatAll("%s {default}%t", SERVER_TAG,"AutoBhop Off");
 			for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 			{
-				PrintHintText(i, "Автораспрыжка отключена");
+				PrintHintText(i, "%t", "AutoBhop Off");
 				SetEntProp(i, Prop_Send, "m_CollisionGroup", ec);
 			}
 		}
@@ -148,11 +150,11 @@ public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float
 		{
 			if(GetConVarBool(abMeterLocation))
 			{
-				ShowHudText(client, 3, "Скорость: %.2f м/с", fVelocity);
+				ShowHudText(client, 3, "%t %.2f м/с", "Speed", fVelocity);
 			}
 			else
 			{
-				PrintHintText(client, "Скорость: %.2f м/с", fVelocity);
+				PrintHintText(client, "%t %.2f м/с", "Speed", fVelocity);
 			}
 		}
 		if(IsClientObserver(client))
@@ -168,11 +170,11 @@ public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float
 			{
 				if(IsFakeClient(spectarget))
 				{
-					ShowHudText(client, 3, "BOT %s Скорость: %.2f м/с", ClientName, fVelocity);
+					ShowHudText(client, 3, "BOT %s %t %.2f м/с", ClientName, "Speed", fVelocity);
 				}
 				else
 				{
-					ShowHudText(client, 3, "%s Скорость: %.2f м/с", ClientName, fVelocity);
+					ShowHudText(client, 3, "%s %t %.2f м/с", ClientName, "Speed", fVelocity);
 				}
 			}
 			else
@@ -181,22 +183,22 @@ public void OnPlayerRunCmdPost(int client, int buttons, int impulse, const float
 				{
 					if (GetClientTeam(spectarget) == 2)
 					{
-						PrintHintText(client, "BOT %s Скорость: %.2f м/с", ClientName, fVelocity);
+						PrintHintText(client, "BOT %s %t %.2f м/с", ClientName, "Speed", fVelocity);
 					}
 					else
 					{
-						PrintHintText(client, "BOT %s Скорость: %.2f м/с", ClientName, fVelocity);
+						PrintHintText(client, "BOT %s %t %.2f м/с", ClientName, "Speed", fVelocity);
 					}
 				}
 				else
 				{
 					if (GetClientTeam(spectarget) == 2)
 					{
-						PrintHintText(client, "%s Скорость: %.2f м/с", ClientName, fVelocity);
+						PrintHintText(client, "%s %t %.2f м/с", ClientName, "Speed", fVelocity);
 					}
 					else
 					{
-						PrintHintText(client, "%s Скорость: %.2f м/с", ClientName, fVelocity);
+						PrintHintText(client, "%s %t %.2f м/с", ClientName, "Speed", fVelocity);
 					}
 				}
 			}
