@@ -1,6 +1,6 @@
 #include <sourcemod> 
 #include <sdktools>
-#include <multicolors> 
+#include <multicolors>
 
 #pragma semicolon 1
 #pragma newdecls required
@@ -109,7 +109,7 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 		SetConVarFloat(FindConVar("sv_staminajumpcost"), 0.0, true);
 		SetConVarFloat(FindConVar("sv_staminalandcost"), 0.0, true);
 		SetConVarInt(FindConVar("mp_solid_teammates"), 0, true);
-		PrintToChatAll("%s {default}%t", SERVER_TAG,"AutoBhop On");
+		CPrintToChatAll("%s {default}%t", SERVER_TAG,"AutoBhop On");
 		for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 		{
 			PrintHintText(i, "%t", "AutoBhop On");
@@ -126,7 +126,7 @@ public void OnBhop_RoundStart(Handle event, const char[] name, bool dontBroadcas
 			SetConVarFloat(FindConVar("sv_staminajumpcost"), sjc, true);
 			SetConVarFloat(FindConVar("sv_staminalandcost"), slc, true);
 			SetConVarInt(FindConVar("mp_solid_teammates"), st, true);
-			PrintToChatAll("%s {default}%t", SERVER_TAG,"AutoBhop Off");
+			CPrintToChatAll("%s {default}%t", SERVER_TAG,"AutoBhop Off");
 			for (int i = 1; i <= MaxClients; i++) if (IsValidClient(i, true, true))
 			{
 				PrintHintText(i, "%t", "AutoBhop Off");
