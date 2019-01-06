@@ -5,7 +5,7 @@
 #pragma semicolon 1
 #pragma newdecls required
 
-#define SERVER_TAG "[Autobhop]"
+#define SERVER_TAG "[Bhop]"
 
 int g_iround = 0, aa, ebh, st, ec;
 float sjc, slc;
