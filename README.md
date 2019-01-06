@@ -9,7 +9,11 @@
 <li>sm_absm_location "1" // Где вывести показатель скорости? 0 = CenterHUD, 1 = CSGO HUD</li>
 </ul>
 
-<h2>Изменения v 1.3</h2>
+<h2>Требования:</h2>
+
+-https://github.com/segas-segason/Multi-Colors
+
+<h2>Изменения v 1.3:</h2>
 
 - Вырезана реклама;
 - Добавлен файл перевода.
