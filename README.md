@@ -11,7 +11,7 @@
 
 <h2>Требования:</h2>
 
--https://github.com/segas-segason/Multi-Colors
+https://github.com/segas-segason/Multi-Colors
 
 <h2>Изменения v 1.3:</h2>
 
